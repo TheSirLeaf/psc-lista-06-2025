@@ -100,7 +100,6 @@ namespace psc_lista_06_2025.Models
 
             input = input.Trim();
 
-            // Valida que a entrada é exatamente UMA letra Unicode (pode ser acentuada)
             if (!System.Text.RegularExpressions.Regex.IsMatch(input, @"^\p{L}$"))
             {
                 Console.WriteLine("Entrada inválida: digite apenas UMA letra.");
@@ -116,24 +115,19 @@ namespace psc_lista_06_2025.Models
                 var category = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch);
 
                 if (category != System.Globalization.UnicodeCategory.NonSpacingMark)
-                sb.Append(ch); // Apenas adiciona caracteres que NÃO sejam marcas de combinação
+                sb.Append(ch);
             }
-            // Ao final, sb.ToString() contém a string "sem acentos" (as marcas foram removidas).
-
-            // Pega o primeiro caractere normalizado e verifica se é vogal
             char baseChar = char.ToLowerInvariant(sb[0]);
             bool isVowel = "aeiou".IndexOf(baseChar) >= 0;
 
             if (!isVowel)
             {
-                // Guarda o caractere original informado (mantendo acento se houver)
                 consonantes.Add(input[0]);
             }
 
             i++;
             }
 
-            // Mostra resultado
             Console.WriteLine($"Número de consoantes lidas: {consonantes.Count}");
             if (consonantes.Count > 0)
             Console.WriteLine("Consoantes: " + string.Join(", ", consonantes));

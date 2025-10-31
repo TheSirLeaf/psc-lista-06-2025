@@ -36,10 +36,10 @@ while (!exit)
                 Atividade5();
                 break;
             case 6:
-
+                Atividade6();
                 break;
             case 7:
-
+                Atividade7();
                 break;
             case 8:
 

@@ -219,5 +219,37 @@ namespace psc_lista_06_2025.Models
 
             Console.WriteLine($"Número de alunos com média maior ou igual a 7.0: {alunosAprovados}");
         }
+        /// <summary>
+        /// Faça um Programa que leia um vetor de 5 números inteiros, mostre a soma, a
+        /// multiplicação e os números.
+        /// </summary>
+        public static void Atividade7()
+        {
+            int[] numeros = new int[5];
+            int soma = 0;
+            int multiplicacao = 1;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write($"Digite o {i + 1}º número: ");
+                string? input = Console.ReadLine();
+
+                if (int.TryParse(input, out int valor))
+                {
+                    numeros[i] = valor;
+                    soma += valor;
+                    multiplicacao *= valor;
+                }
+                else
+                {
+                    Console.WriteLine("Número inválido, tente novamente.");
+                    i--;
+                }
+            }
+
+            Console.WriteLine($"Números lidos: {string.Join(", ", numeros)}");
+            Console.WriteLine($"Soma: {soma}");
+            Console.WriteLine($"Multiplicação: {multiplicacao}");
+        }
     }
 }

@@ -41,9 +41,6 @@ while (!exit)
             case 7:
                 Atividade7();
                 break;
-            case 8:
-
-                break;
             default:
                 exit = true;
                 break;

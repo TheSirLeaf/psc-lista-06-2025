@@ -89,50 +89,94 @@ namespace psc_lista_06_2025.Models
             int i = 0;
             while (i < 10)
             {
-            Console.WriteLine($"Digite o caractere {i + 1}/10:");
-            string? input = Console.ReadLine();
+                Console.WriteLine($"Digite o caractere {i + 1}/10:");
+                string? input = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                Console.WriteLine("Entrada vazia, tente novamente.");
-                continue;
-            }
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Entrada vazia, tente novamente.");
+                    continue;
+                }
 
-            input = input.Trim();
+                input = input.Trim();
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch(input, @"^\p{L}$"))
-            {
-                Console.WriteLine("Entrada inválida: digite apenas UMA letra.");
-                continue;
-            }
+                if (!System.Text.RegularExpressions.Regex.IsMatch(input, @"^\p{L}$"))
+                {
+                    Console.WriteLine("Entrada inválida: digite apenas UMA letra.");
+                    continue;
+                }
 
-            string normalized = input.Normalize(System.Text.NormalizationForm.FormD); 
+                string normalized = input.Normalize(System.Text.NormalizationForm.FormD);
 
-            var sb = new System.Text.StringBuilder();
+                var sb = new System.Text.StringBuilder();
 
-            foreach (var ch in normalized)
-            {
-                var category = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch);
+                foreach (var ch in normalized)
+                {
+                    var category = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch);
 
-                if (category != System.Globalization.UnicodeCategory.NonSpacingMark)
-                sb.Append(ch);
-            }
-            char baseChar = char.ToLowerInvariant(sb[0]);
-            bool isVowel = "aeiou".IndexOf(baseChar) >= 0;
+                    if (category != System.Globalization.UnicodeCategory.NonSpacingMark)
+                        sb.Append(ch);
+                }
+                char baseChar = char.ToLowerInvariant(sb[0]);
+                bool isVowel = "aeiou".IndexOf(baseChar) >= 0;
 
-            if (!isVowel)
-            {
-                consonantes.Add(input[0]);
-            }
+                if (!isVowel)
+                {
+                    consonantes.Add(input[0]);
+                }
 
-            i++;
+                i++;
             }
 
             Console.WriteLine($"Número de consoantes lidas: {consonantes.Count}");
             if (consonantes.Count > 0)
-            Console.WriteLine("Consoantes: " + string.Join(", ", consonantes));
+                Console.WriteLine("Consoantes: " + string.Join(", ", consonantes));
             else
-            Console.WriteLine("Nenhuma consoante foi lida.");
+                Console.WriteLine("Nenhuma consoante foi lida.");
+        }
+        /// <summary>
+        /// Faça um Programa que leia 20 números inteiros e armazene-os num vetor.  
+        /// Armazene os números pares no vetor PAR e os números IMPARES no vetor  
+        /// ímpar. Imprima os três vetores. 
+        /// </summary>
+        public static void Atividade5()
+        {
+            int[] numeros = new int[20];
+            int[] pares = new int[20];
+            int[] impares = new int[20];
+            int contPares = 0;
+            int contImpares = 0;
+
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine($"Digite o número {i + 1}/20:");
+                string? input = Console.ReadLine();
+
+                if (int.TryParse(input, out int value))
+                {
+                    numeros[i] = value;
+
+                    if (value % 2 == 0)
+                    {
+                        pares[contPares] = value;
+                        contPares++;
+                    }
+                    else
+                    {
+                        impares[contImpares] = value;
+                        contImpares++;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Número inválido, tente novamente.");
+                    i--;
+                }
+            }
+
+            Console.WriteLine("Números lidos: " + string.Join(", ", numeros));
+            Console.WriteLine("Números pares: " + string.Join(", ", pares.Take(contPares)));
+            Console.WriteLine("Números ímpares: " + string.Join(", ", impares.Take(contImpares)));
         }
     }
 }

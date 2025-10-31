@@ -33,7 +33,7 @@ while (!exit)
                 Atividade4();
                 break;
             case 5:
-
+                Atividade5();
                 break;
             case 6:
 

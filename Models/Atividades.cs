@@ -178,5 +178,46 @@ namespace psc_lista_06_2025.Models
             Console.WriteLine("Números pares: " + string.Join(", ", pares.Take(contPares)));
             Console.WriteLine("Números ímpares: " + string.Join(", ", impares.Take(contImpares)));
         }
+        /// <summary>
+        /// Faça um Programa que peça as quatro notas de 10 alunos, calcule e armazene
+        /// num vetor a média de cada aluno, imprima o número de alunos com média
+        /// maior ou igual a 7.0.
+        /// </summary>
+        public static void Atividade6()
+        {
+            double[] medias = new double[10];
+            int alunosAprovados = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"Digite as quatro notas do aluno {i + 1}:");
+
+                double soma = 0;
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.Write($"Nota {j + 1}: ");
+                    string? input = Console.ReadLine();
+
+                    if (double.TryParse(input, out double nota))
+                    {
+                        soma += nota;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nota inválida, tente novamente.");
+                        j--;
+                    }
+                }
+
+                medias[i] = soma / 4;
+
+                if (medias[i] >= 7.0)
+                {
+                    alunosAprovados++;
+                }
+            }
+
+            Console.WriteLine($"Número de alunos com média maior ou igual a 7.0: {alunosAprovados}");
+        }
     }
 }
